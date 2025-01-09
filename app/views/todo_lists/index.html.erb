@@ -1,16 +1,18 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, "Todo Lists" %>
 
-<% content_for :title, "Todo lists" %>
-
-<h1>Todo lists</h1>
-
-<div id="todo_lists">
-  <% @todo_lists.each do |todo_list| %>
-    <%= render todo_list %>
-    <p>
-      <%= link_to "Show this todo list", todo_list %>
-    </p>
-  <% end %>
+<div class="card-header d-flex justify-content-between">
+  <span>
+    Todo Lists
+  </span>
+  <%= link_to "New todo list", new_todo_list_path, class:"btn btn-primary btn-sm" %>  
 </div>
 
-<%= link_to "New todo list", new_todo_list_path %>
+<ul class="list-group">
+  <% @todo_lists.each do |todo_list| %>
+    <li class="list-group-item">
+      <%= link_to todo_list.title, todo_list %>
+    </li>
+  <% end %>
+</ul>
+
+

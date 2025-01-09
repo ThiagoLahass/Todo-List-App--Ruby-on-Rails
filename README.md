@@ -22,3 +22,10 @@
 
 - Update database
     - rails db:migrate
+
+- Update routes.rb
+    ```ruby
+        resources :todo_lists do
+            resources :todo_items
+        end
+    ```
