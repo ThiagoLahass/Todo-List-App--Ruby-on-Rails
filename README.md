@@ -38,3 +38,20 @@
     - Stimulus reflex
         - bundle add stimulus_reflex
         - rails stimulus_reflex:install
+        - rails g stimulus_reflex TodoItem
+
+- User Devise Management
+    - Add Devise gem to Gemfile:
+        - gem 'devise', '~> 4.9', '>= 4.9.4'
+    - Install the gem:
+        - bundle install
+    - Devise install on Rails:
+        - rails g devise:install
+    - Config config/environments/development.rb file:
+        - config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+    - Generate Devise views:
+        - rails g devise:views
+    - Generate the User model:
+        - rails g devise user
+    - Migrate the database:
+        - rails db:migrate
