@@ -1,5 +1,19 @@
-<h1>New todo_item</h1>
+<div class="card-header d-flex justify-content-left">
+  <div class="d-flex gap-4 align-items-center">
+    <div>
+      <%= link_to todo_list_todo_items_path(@todo_item.todo_list), class:"btn btn-dark" do %>
+        <i class="fas fa-angle-left"></i>
+      <% end %>
+    </div>
+    <div> 
+      <h5 class="m-0">
+        <b>New Todo Item</b>
+      </h5>
+    </div> 
+  </div>
+</div>
 
-<%= render 'form' %>
+<div class="card-body">
+  <%= render 'form' %>
+</div>
 
-<%= link_to 'Back', todo_list_todo_items_path(@todo_item.todo_list) %>

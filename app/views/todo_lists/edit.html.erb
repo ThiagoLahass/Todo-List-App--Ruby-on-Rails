@@ -17,4 +17,8 @@
 
 <div class="card-body">
   <%= render "form", todo_list: @todo_list %>
+
+  <div class="d-flex mt-5">
+    <%= link_to 'Delete this Todo List', @todo_list, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+  </div>
 </div>

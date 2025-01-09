@@ -20,8 +20,12 @@
     </div>
   </div>
 
-  <div>
+  <div class="d-flex gap-2 align-items-center">
     <%= link_to "Edit",  edit_todo_list_path(@todo_list), class:"btn btn-secondary" %>  
+    <%= link_to todo_list_todo_items_path(@todo_list), class: "btn btn-outline-primary d-flex align-items-center gap-2" do %>
+      <span>See More Details</span>
+      <i class="fas fa-arrow-right"></i>
+    <% end %>
   </div>
 </div>
 

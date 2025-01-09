@@ -24,7 +24,7 @@
 
           <div class="d-flex align-items-center gap-3">
             <%= link_to "Edit",  edit_todo_list_path(todo_list), class:"btn btn-warning" %>  
-            <%= link_to "Delete",  edit_todo_list_path(todo_list), class:"btn btn-danger" %>  
+            <%= link_to 'Delete', todo_list, method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class: "btn btn-danger" %>
           </div>
         </li>
       <% end %>

@@ -30,6 +30,16 @@
         end
     ```
 
+- IMPORTANT OBSERVATION ABOUT DESTROY (DELETE) LINKS:
+    - "You need to go to section 7.5 of the https://guides.rubyonrails.org/getting_started.html. It explains why:
+        - "we need to set the data-turbo-method and data-turbo-confirm HTML attributes of the "Destroy" link."
+    - Read the entire section 7.5, including the destroy action in both examples. Also preserve log in your console and observe the errors when you click on Delete button. To avoid head slapping moments, in destroy action try to add status to redirect_to as per rails guides redirect_to whatever_path, status: :see_other this also applies to when you delete an object and render new, you need to set status :unprocessable_entity which leads to server response to 422.
+    - the key here is to ensure you have turbo_method: :delete in your link_to for Turbo, then, method: :delete to change GET to delete, and finally your destroy action to have a status when you're using redirect_to in-order to avoid errors when/if browser redirects you to another location with DELETE method."
+    - https://guides.rubyonrails.org/getting_started.html
+    - https://stackoverflow.com/questions/70446101/ruby-on-rails-7-delete-method-not-working
+
+
+
 - Creating total, completed and percent completed items
 - Making the form work
     - Progress bar

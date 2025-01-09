@@ -1,29 +1,54 @@
-<h1>Listing todo_items</h1>
+<div class="card-header d-flex justify-content-between">
+  <div>
+    <div class="d-flex gap-4 align-items-center">
+      <div>
+        <%= link_to todo_list_path(@todo_list), class:"btn btn-dark" do %>
+          <i class="fas fa-angle-left"></i>
+        <% end %>
+      </div>
+      <div> 
+        <h5 class="m-0">
+          <b><%= @todo_list.title %></b>
+          <span class="badge text-bg-<%= @todo_list.status_color %> rounded-pill">
+            <%= @todo_list.status %>
+          </span>
+        </h5>
+        <p class="text-secondary m-0"><small><%= @todo_list.percent_completed %>% Completed (<%= @todo_list.completed_items %>/<%= @todo_list.total_items %> Todo Items)</small></p>
+      </div> 
+    </div>
+  </div>
+</div>
+<div class="card-body">
 
-<table>
-  <tr>
-    <th>Description</th>
-    <th>Completed</th>
-    <th>Completed at</th>
-    <th>Todo list</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+  <table class="table table-striped table-bordered table-hover">
+    <thead class="thead-dark">
+      <tr>
+        <th>Description</th>
+        <th>Completed</th>
+        <th>Completed at</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
 
-<% @todo_items.each do |todo_item| %>
-  <tr>
-    <td><%= todo_item.description %></td>
-    <td><%= todo_item.completed %></td>
-    <td><%= todo_item.completed_at %></td>
-    <td><%= todo_item.todo_list %></td>
-    <td><%= link_to 'Show', [todo_item.todo_list, todo_item] %></td>
-    <td><%= link_to 'Edit', edit_todo_list_todo_item_path(todo_item.todo_list, todo_item) %></td>
-    <td><%= link_to 'Destroy', [todo_item.todo_list, todo_item], method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+    <tbody>
+      <% @todo_items.each do |todo_item| %>
+        <tr>
+          <td><%= link_to todo_item.description, [todo_item.todo_list, todo_item] %></td>
+          <td><%= todo_item.completed %></td>
+          <td><%= todo_item.completed_at %></td>
+          <td><%= link_to 'Edit', edit_todo_list_todo_item_path(todo_item.todo_list, todo_item), class:"btn btn-warning btn-sm" %></td>
+          <td>
+            <%= link_to 'Destroy', [todo_item.todo_list, todo_item], method: :delete, data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' }, class:"btn btn-danger btn-sm" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<br />
+  <br />
 
-<%= link_to 'New Todo item', new_todo_list_todo_item_path(params[:todo_list_id]) %>
+  <%= link_to 'New Todo Item', new_todo_list_todo_item_path(params[:todo_list_id]), class:"btn btn-primary" %>
+</div>
+
+

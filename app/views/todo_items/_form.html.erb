@@ -11,23 +11,20 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="field form-group mb-2">
     <%= f.label :description %><br />
-    <%= f.textarea :description %>
+    <%= f.textarea :description, class:"form-control" %>
   </div>
-  <div class="field">
+  <div class="field form-group mb-2">
     <%= f.label :completed %><br />
-    <%= f.checkbox :completed %>
+    <%= f.checkbox :completed, class:"form-check-input" %>
   </div>
-  <div class="field">
+  <div class="field form-group mb-2">
     <%= f.label :completed_at %><br />
-    <%= f.datetime_field :completed_at %>
+    <%= f.datetime_field :completed_at, class:"form-control" %>
   </div>
-  <div class="field">
-    <%= f.label :todo_list %><br />
-    <%= f.text_field :todo_list %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
+
+  <div class="actions mt-1">
+    <%= f.submit class:"btn btn-primary" %>
   </div>
 <% end %>
