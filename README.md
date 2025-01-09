@@ -29,3 +29,12 @@
             resources :todo_items
         end
     ```
+
+- Creating total, completed and percent completed items
+- Making the form work
+    - Progress bar
+    - Status Badge
+    - Add Todo Item input form
+    - Stimulus reflex
+        - bundle add stimulus_reflex
+        - rails stimulus_reflex:install
