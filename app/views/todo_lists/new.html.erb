@@ -1,0 +1,11 @@
+<% content_for :title, "Add New Todo List" %>
+
+<h1>Add New Todo List</h1>
+
+<%= render "form", todo_list: @todo_list %>
+
+<br>
+
+<div>
+  <%= link_to "Back to todo lists", todo_lists_path %>
+</div>

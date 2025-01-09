@@ -1,0 +1,20 @@
+<p style="color: green"><%= notice %></p>
+
+<h3>
+  <%= @todo_list.title %>
+</h3>
+
+<ul>
+  <% @todo_list.todo_items.each do |todo_item| %>
+    <li>
+      <%= todo_item.description %>
+    </li>
+  <% end %>
+</ul>
+
+<div>
+  <%= link_to "Edit this todo list", edit_todo_list_path(@todo_list) %> |
+  <%= link_to "Back to todo lists", todo_lists_path %>
+
+  <%= button_to "Destroy this todo list", @todo_list, method: :delete %>
+</div>

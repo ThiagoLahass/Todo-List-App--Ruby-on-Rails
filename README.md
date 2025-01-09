@@ -1,24 +1,24 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+- How to Install Ruby in Ubuntu 24.04 LTS
+    - https://ubuntuhandbook.org/index.php/2024/01/install-ruby-ubuntu-24-04/
 
-Things you may want to cover:
+- Install Rails
+    - gem install rails
 
-* Ruby version
+- Create a new Rails project:
+    - rails new project_name
 
-* System dependencies
+- Generate the home page:
+    - rails g controller home index
 
-* Configuration
+- Add nestes_scaffold gem
+    - gem 'nested_scaffold', '~> 1.1'
+    - https://rubygems.org/gems/nested_scaffold
 
-* Database creation
+- Create the models
+    - rails g scaffold TodoList title
+    - rails g nested_scaffold TodoList/TodoItem description:text completed:boolean completed_at:datetime todo_list:references
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Update database
+    - rails db:migrate

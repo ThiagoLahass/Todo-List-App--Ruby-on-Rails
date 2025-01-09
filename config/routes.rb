@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :todo_lists do
+    resources :todo_items
+  end
+  
   # get "home/index"
   root 'home#index'
 
