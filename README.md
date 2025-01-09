@@ -55,3 +55,5 @@
         - rails g devise user
     - Migrate the database:
         - rails db:migrate
+
+- Devise View Styling

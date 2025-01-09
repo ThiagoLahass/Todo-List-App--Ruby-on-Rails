@@ -1,26 +1,36 @@
-<h2>Log in</h2>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="card-header d-flex justify-content-left">
+  <div class="d-flex gap-4 align-items-center">
+    <h3 class="m-0">
+      <b>Log in</b>
+    </h3>
   </div>
+</div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+<div class="card-body">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+    <div class="field form-group mb-2">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control" %>
+    </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+    <div class="field form-group mb-2">
+      <%= f.label :password %><br />
+      <%= f.password_field :password, autocomplete: "current-password", class:"form-control" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="field form-group m-1">
+        <%= f.check_box :remember_me, class:"form-check-input" %>
+        <%= f.label :remember_me %>
+      </div>
+    <% end %>
+
+    <div class="actions mt-2">
+      <%= f.submit "Log in", class:"btn btn-primary" %>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  <br/>
 
-<%= render "devise/shared/links" %>
+  <%= render "devise/shared/links" %>
+</div>
