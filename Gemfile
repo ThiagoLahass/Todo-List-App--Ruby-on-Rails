@@ -16,6 +16,7 @@ gem "bootsnap", require: false
 gem "kamal", require: false
 gem "thruster", require: false
 gem 'nested_scaffold', '~> 1.1'
+gem "stimulus_reflex", "~> 3.5"
 
 group :development, :test do
   gem "debug", platforms: %i[ mri windows ], require: "debug/prelude"
@@ -31,5 +32,3 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
-
-gem "stimulus_reflex", "~> 3.5"
