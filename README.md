@@ -154,3 +154,7 @@ The screen for editing a specific todo item:
     rails g stimulus_reflex TodoItem
     ```
     - The *check* **or** *redo* button on the screen displaying the items in a to-do list should switch between them, setting the status to *completed* or *incompleted*, but `stimulus_reflex` for some reason is not working, and I have not found a way to solve it despite having looked for several solutions and ways to solve it.
+
+---
+
+Thank you for checking out this project! If you found it helpful, please consider giving it a ⭐. Your support is greatly appreciated!
