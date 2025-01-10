@@ -28,7 +28,7 @@ end
 
 group :development do
   gem "web-console"
-  gem "sqlite3", ">= 2.1"
+  gem 'pg', '~> 1.5', '>= 1.5.9'
 end
 
 group :production do
