@@ -82,3 +82,6 @@
 - Home page:
     - if user_signed_in? -> todo_lists#index (todo_lists page)
     - else -> users#sign_in (login page)
+
+- Stimulus Reflex not working!
+    - Action Cable aparentemente

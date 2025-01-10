@@ -12,7 +12,7 @@
     <% @todo_lists.each do |todo_list| %>
       <% if todo_list.user == current_user %>
         <%= link_to todo_list, class:"text-decoration-none" do %>
-          <li class="list-group-item d-flex justify-content-between">
+          <li class="list-group-item d-flex justify-content-between todo-item-hover">
             <div>
               <h6 class="m-0 text-dark">
                 <b><%= todo_list.title %></b>
@@ -34,4 +34,9 @@
   </ul>
 </div>
 
-
+<style>
+  .todo-item-hover:hover {
+    background-color: #f8f9fa;
+    cursor: pointer;
+  }
+</style>
