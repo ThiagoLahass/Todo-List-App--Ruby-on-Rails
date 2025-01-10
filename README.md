@@ -67,3 +67,18 @@
         - rails db:migrate
 
 - Devise View Styling
+
+- Associate User with Todo Lists
+    - rails g migration add_user_id_to_todo_list user_id:integer:index
+    - rails db:migrate
+    - Check only the owner user can edit them todo lists:
+        - def correct_user
+            @todo_list = current_user.todo_list.find_by(id: params[:id])
+            redirect_to todo_lists_path, notice: "Not Authorized To Edit This Todo List" if @todo_list.nil?
+        end
+    - Showing only the todo lists which owners to current user:
+        - <% if todo_list.user == current_user %>
+
+- Home page:
+    - if user_signed_in? -> todo_lists#index (todo_lists page)
+    - else -> users#sign_in (login page)

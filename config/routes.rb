@@ -5,7 +5,8 @@ Rails.application.routes.draw do
   end
   
   # get "home/index"
-  root 'home#index'
+  # root 'home#index'
+  root 'todo_lists#index'
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
