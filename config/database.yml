@@ -10,10 +10,14 @@ development:
 test:
   <<: *default
 
-production:
+cache:
   <<: *default
+  database: cache_production
 
-# Para evitar o erro com `cable`, adicione esta configuração:
+queue:
+  <<: *default
+  database: queue_production
+
 cable:
   <<: *default
-  database: cable_production # Você pode especificar outro nome se preferir.
+  database: cable_production
