@@ -1,4 +1,3 @@
-
 # To-Do List Project - Ruby on Rails
 
 ## Table of Contents
@@ -10,6 +9,7 @@
     - [Styling Devise Views](#styling-devise-views)
 4. [Routing and Views](#routing-and-views)
 5. [Screenshots](#screenshots)
+6. [Deploying the Application](#deploying-the-application)
 
 ---
 
@@ -141,20 +141,94 @@ The screen for editing a specific todo item:
 
 ---
 
-## Additional Notes
+## Deploying the Application
 
-- **Turbo and Delete Links**: When using the `delete` method with Turbo, ensure you follow the instructions from section 7.5 of the Rails Guides, particularly about setting the `data-turbo-method` and `data-turbo-confirm` attributes for your destroy links.
-    - [Rails Getting Started Guide](https://guides.rubyonrails.org/getting_started.html)
-    - [Stack Overflow Discussion](https://stackoverflow.com/questions/70446101/ruby-on-rails-7-delete-method-not-working)
-  
-- **Stimulus Reflex Setup**: For real-time updates in your application, integrate Stimulus Reflex:
+### Deploy to Render
+The application has been deployed on Render:
+[To-Do List App](https://todo-list-app-ruby-on-rails.onrender.com/)
+
+### Steps to Deploy
+
+#### 1. Change SQLite to PostgreSQL
+Run the following command to change the database system:
+```bash
+rails db:system:change --to=postgresql
+```
+
+#### 2. Install PostgreSQL on Linux
+Install PostgreSQL using the commands below:
+```bash
+sudo apt update
+sudo apt install postgresql postgresql-contrib
+sudo systemctl start postgresql.service
+```
+
+#### 3. Create and Migrate Database
+Run the following commands to set up the database:
+```bash
+rails db:create
+rails db:migrate
+```
+
+#### 4. Fix Database Permission Errors
+If you encounter a "permission denied" error, follow these steps:
+1. Open the PostgreSQL console:
     ```bash
-    bundle add stimulus_reflex
-    rails stimulus_reflex:install
-    rails g stimulus_reflex TodoItem
+    sudo -u postgres psql
     ```
-    - The *check* **or** *redo* button on the screen displaying the items in a to-do list should switch between them, setting the status to *completed* or *incompleted*, but `stimulus_reflex` for some reason is not working, and I have not found a way to solve it despite having looked for several solutions and ways to solve it.
+2. Create a user and grant privileges:
+    ```sql
+    CREATE USER your_username WITH PASSWORD 'your_password';
+    ALTER ROLE your_username CREATEDB;
+    GRANT ALL PRIVILEGES ON DATABASE your_database_name TO your_username;
+    \q
+    ```
+
+#### 5. Upload Project to GitHub
+Push your project to a GitHub repository.
+
+#### 6. Configure Render Deployment
+1. Create a file named `render-build.sh` in your repo’s `bin` directory and paste the following:
+    ```bash
+    #!/usr/bin/env bash
+    # exit on error
+    set -o errexit
+
+    bundle install
+    bundle exec rails assets:precompile
+    bundle exec rails assets:clean
+    ```
+
+2. Create a file named `render.yaml` in the root directory with the following content:
+    ```yaml
+    databases:
+      - name: mysite
+        databaseName: mysite
+        user: mysite
+        plan: free
+
+    services:
+      - type: web
+        name: mysite
+        runtime: ruby
+        plan: free
+        buildCommand: "./bin/render-build.sh"
+        startCommand: "bundle exec rails server"
+        envVars:
+          - key: DATABASE_URL
+            fromDatabase:
+              name: mysite
+              property: connectionString
+          - key: RAILS_MASTER_KEY
+            sync: false
+          - key: WEB_CONCURRENCY
+            value: 2
+    ```
+
+3. Follow the detailed guide from Render’s documentation:
+    [Render Rails Deployment Guide](https://render.com/docs/deploy-rails)
 
 ---
 
 Thank you for checking out this project! If you found it helpful, please consider giving it a ⭐. Your support is greatly appreciated!
+
